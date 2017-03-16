@@ -1,6 +1,6 @@
-package com.cloudm.framework.web.result;
-import com.cloudm.framework.web.result.base.BaseResult;
-import com.cloudm.framework.web.result.base.ServiceError;
+package com.cloudm.framework.common.web.result;
+import com.cloudm.framework.common.web.result.base.BaseResult;
+import com.cloudm.framework.common.web.result.base.ServiceError;
 
 import java.io.Serializable;
 

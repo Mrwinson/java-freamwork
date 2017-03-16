@@ -1,4 +1,4 @@
-package com.cloudm.framework.util;
+package com.cloudm.framework.common.util;
 
 import com.google.gson.Gson;
 import org.slf4j.Logger;

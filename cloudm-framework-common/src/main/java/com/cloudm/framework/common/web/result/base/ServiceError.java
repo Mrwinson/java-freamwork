@@ -1,4 +1,4 @@
-package com.cloudm.framework.web.result.base;
+package com.cloudm.framework.common.web.result.base;
 
 /**
  * @description: 错误数据对象接口

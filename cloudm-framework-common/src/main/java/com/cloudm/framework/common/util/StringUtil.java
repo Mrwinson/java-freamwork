@@ -1,4 +1,4 @@
-package com.cloudm.framework.util;
+package com.cloudm.framework.common.util;
 
 import org.apache.commons.lang3.StringUtils;
 
