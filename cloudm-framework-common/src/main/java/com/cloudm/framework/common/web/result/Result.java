@@ -58,4 +58,7 @@ public class Result<T> extends BaseResult implements Serializable{
         result.message = message;
         return result;
     }
+    public T getData() {
+        return data;
+    }
 }

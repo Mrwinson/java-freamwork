@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @date: 2017/3/15
  * @version: V1.0
  */
-public class BaseResult  implements Serializable {
+public class BaseResult implements Serializable {
     private static final long serialVersionUID = -4205541359679710511L;
     protected static final String SUCCESS_CODE="1";
     /**
@@ -92,4 +92,6 @@ public class BaseResult  implements Serializable {
     public void setDevMsg(String devMsg) {
         this.devMsg = devMsg;
     }
+
+
 }
