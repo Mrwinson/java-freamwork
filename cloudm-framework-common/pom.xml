@@ -61,6 +61,11 @@
             <artifactId>spring-aop</artifactId>
             <version>4.2.4.RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>cloudm</groupId>
+            <artifactId>taobao-sdk</artifactId>
+            <version>1.0</version>
+        </dependency>
 
     </dependencies>
 
