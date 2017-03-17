@@ -1,9 +1,8 @@
 package com.cloudm.framework.common.util;
 
-import com.cloudm.framework.common.ex.BusinessProcessFailException;
 import com.cloudm.framework.common.helper.ConfigHelper;
-import com.cloudm.framework.common.sms.Body;
 import com.cloudm.framework.common.sms.CustResultDO;
+import com.cloudm.framework.common.sms.Result;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.taobao.api.DefaultTaobaoClient;
@@ -91,9 +90,38 @@ public class SmsUtil {
      *  发送短信
      * @param sms_param 短信模板变量
      * @param mobile 手机号
+     * @param sms_template_code  模板号
      * @return
      */
     public static boolean send(String sms_param,String mobile,String sms_template_code){
         return send(URL,APP_KEY,SECRET,SMS_SIGN,sms_param,sms_template_code,mobile);
+    }
+
+    /**
+     *  发送短信
+     * @param sms_param 短信模板变量
+     * @param mobile 手机号
+     * @param sms_template_code  模板号
+     * @param sms_free_sign_name 签名
+     * @return
+     */
+    public static boolean send(String sms_param,String mobile,String sms_template_code,String sms_free_sign_name ){
+        return send(URL,APP_KEY,SECRET,sms_free_sign_name,sms_param,sms_template_code,mobile);
+    }
+    private class Body {
+        private Result result;
+        private String request_id;
+        public Result getResult() {
+            return result;
+        }
+        public void setResult(Result result) {
+            this.result = result;
+        }
+        public String getRequest_id() {
+            return request_id;
+        }
+        public void setRequest_id(String request_id) {
+            this.request_id = request_id;
+        }
     }
 }
