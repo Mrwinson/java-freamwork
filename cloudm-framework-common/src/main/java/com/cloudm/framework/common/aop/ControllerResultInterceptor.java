@@ -14,6 +14,15 @@ import org.objenesis.ObjenesisStd;
 /**
  * @description: Controller 拦截处理
  * 只要在配置文件中注入AOP配置即可生效
+ * 实例如下:
+ * <ul>
+        <bean id="controllerResultInterceptor" class="com.cloudm.framework.common.aop.ControllerResultInterceptor"/>
+        <aop:config proxy-target-class="true">
+            <aop:pointcut id="resultControlWrapper" expression="(@annotation(org.springframework.web.bind.annotation.ResponseBody) and execution(com.cloudm.framework.common.web.result.Result *.*(..))) or (@annotation(org.springframework.web.bind.annotation.ResponseBody))"></aop:pointcut>
+            <aop:advisor advice-ref="controllerResultInterceptor" pointcut-ref="resultControlWrapper"/>
+        </aop:config>
+</ul>
+
  * @author: Courser
  * @date: 2017/3/17
  * @version: V1.0
