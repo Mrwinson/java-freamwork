@@ -9,6 +9,8 @@
     <artifactId>cloudm-framework-common</artifactId>
     <properties>
         <java-version>1.7</java-version>
+        <aspectj-version>1.8.9</aspectj-version>
+        <springframework-version>4.2.4.RELEASE</springframework-version>
     </properties>
     <dependencies>
         <!--Apache Commons Lang-->
@@ -21,8 +23,18 @@
         <!--SLF4J-->
         <dependency>
             <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>1.7.7</version>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.12</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>1.7.12</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>log4j-over-slf4j</artifactId>
+            <version>1.7.12</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
@@ -66,7 +78,30 @@
             <artifactId>taobao-sdk</artifactId>
             <version>1.0</version>
         </dependency>
-
+        <!--aspectj-->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectj-version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>${aspectj-version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjtools</artifactId>
+            <version>${aspectj-version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${springframework-version}</version>
+        </dependency>
     </dependencies>
 
     <build>
