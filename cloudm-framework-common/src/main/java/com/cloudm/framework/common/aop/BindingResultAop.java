@@ -1,5 +1,6 @@
 package com.cloudm.framework.common.aop;
 
+import com.cloudm.framework.common.enums.BaseErrorEnum;
 import com.cloudm.framework.common.web.result.Result;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.springframework.validation.BindingResult;
@@ -23,6 +24,7 @@ public class BindingResultAop {
                 bindingResult = (BindingResult) arg;
             }
         }
+
         if(bindingResult != null){
             List<ObjectError> errors = bindingResult.getAllErrors();
             if(errors.size()>0){
@@ -31,8 +33,7 @@ public class BindingResultAop {
                     msg.append(error.getDefaultMessage());
                     msg.append("\n");
                 }
-               return Result.wrapErrorResult("-1",msg.toString());
-//                return new JSONView(new _HashMap().add("result",false).add("message",msg.toString()));
+               return Result.wrapErrorResult(BaseErrorEnum.VALIDATE_ERROR.getCode(),msg.toString());
             }
         }
         return joinPoint.proceed();
