@@ -2,10 +2,13 @@ package com.cloudm.framework.common.aop;
 
 import com.cloudm.framework.common.enums.BaseErrorEnum;
 import com.cloudm.framework.common.web.result.Result;
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 
+import java.lang.reflect.Method;
 import java.util.List;
 
 /**
@@ -16,6 +19,7 @@ import java.util.List;
  * @date: 2017/3/20
  * @version: V1.0
  */
+@Slf4j
 public class BindingResultAop {
     public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
         BindingResult bindingResult = null;
@@ -33,6 +37,9 @@ public class BindingResultAop {
                     msg.append(error.getDefaultMessage());
                     msg.append("\n");
                 }
+//                MethodSignature signature = (MethodSignature) joinPoint.getSignature();
+//                Method method = signature.getMethod();
+                log.error(joinPoint.getTarget().getClass().getName()+"#"+joinPoint.getSignature().getName() +"is error ==?{}",msg.toString());
                return Result.wrapErrorResult(BaseErrorEnum.VALIDATE_ERROR.getCode(),msg.toString());
             }
         }
