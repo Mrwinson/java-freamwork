@@ -1,15 +1,20 @@
 package com.cloudm.framework.common.aop;
 
 
+import com.cloudm.framework.common.enums.BaseBizEnum;
+import com.cloudm.framework.common.enums.BaseErrorEnum;
 import com.cloudm.framework.common.ex.BusinessCheckFailException;
 import com.cloudm.framework.common.ex.BusinessProcessFailException;
 import com.cloudm.framework.common.util.StringUtil;
 import com.cloudm.framework.common.web.result.base.BaseResult;
+import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 import org.apache.commons.lang3.time.StopWatch;
 import org.objenesis.ObjenesisStd;
+
+import java.lang.reflect.Method;
 
 /**
  * @description: Controller 拦截处理
@@ -31,6 +36,12 @@ import org.objenesis.ObjenesisStd;
 public class ControllerResultInterceptor implements MethodInterceptor {
     private ObjenesisStd generator = new ObjenesisStd();
 
+    /**
+     * 环绕通知
+     * @param invocation
+     * @return
+     * @throws Throwable
+     */
     @Override
     public BaseResult invoke(final MethodInvocation invocation) throws Throwable {
         BaseResult result = null;
@@ -48,21 +59,13 @@ public class ControllerResultInterceptor implements MethodInterceptor {
             return result;
         } catch (BusinessProcessFailException e) {
             watch.stop();
-            result = getBaseResult(invocation);
-            result.setSuccess(Boolean.FALSE);
-            result.setMessage(StringUtil.isEmpty(e.getMessage())?"系统未知错误！":e.getMessage());
-            result.setCode(StringUtil.isEmpty(e.getErrorCode())?"-100":e.getErrorCode());
-            handleBusinessException(e);
+            result = exceptionProcessor(invocation,e,BaseErrorEnum.BNS_PRS_ERROR);
         } catch (BusinessCheckFailException e) {
-            result = getBaseResult(invocation);
-            result.setSuccess(Boolean.FALSE);
-            result.setMessage(e.getMessage());
-            result.setCode(e.getErrorCode());
-            handleBusinessException(e);
+            watch.stop();
+            result = exceptionProcessor(invocation,e,BaseErrorEnum.BNS_CHK_ERROR);
         } catch (Exception e) {
-            result = getBaseResult(invocation);
-            setSystemError(result);
-            handleThrowable(e);
+            watch.stop();
+            result = exceptionProcessor(invocation,e,BaseErrorEnum.UNKNOWN_ERROR);
         }
         return result;
     }
@@ -79,30 +82,24 @@ public class ControllerResultInterceptor implements MethodInterceptor {
         return result;
     }
 
+
+
     /**
-     * 系统错误封装，这个是未知的
-     * @param result
+     * 异常处理 记录日志并返回result对象
+     * @param invocation
+     * @param baseErrorEnum  {@link BaseErrorEnum}
+     * @param e
+     * @return
      */
-    private void setSystemError(BaseResult result) {
-        log.error("系统异常:code={}, message={}", result.getCode(), result.getMessage());
+    private BaseResult exceptionProcessor(MethodInvocation invocation, Throwable e,BaseErrorEnum baseErrorEnum) {
+        Object[] args = invocation.getArguments();
+        Method method = invocation.getMethod();
+        String methodName = method.getDeclaringClass().getName() + "." + method.getName();
+        log.error("服务[method=" + methodName + "] params={}" + new Gson().toJson(args) + "异常：", e);
+        BaseResult result = getBaseResult(invocation);
+        result.setCode(baseErrorEnum.getCode());
+        result.setMessage(StringUtil.isNotEmpty(e.getMessage())?e.getMessage():baseErrorEnum.getMessage());
         result.setSuccess(false);
-        result.setCode("-1");
-        result.setMessage("系统繁忙，请稍后重试");
-    }
-
-    /**
-     * 系统错误日志
-     * @param e
-     */
-    private void handleThrowable(Throwable e) {
-        log.error("系统出错:", e);
-    }
-
-    /**
-     * 业务错误日志
-     * @param e
-     */
-    private void handleBusinessException(RuntimeException e) {
-        log.error("业务出错:", e);
+        return result;
     }
 }

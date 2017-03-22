@@ -10,7 +10,15 @@ import com.cloudm.framework.common.web.result.base.ServiceError;
  */
 public enum BaseErrorEnum implements ServiceError {
     VALIDATE_ERROR("-10","认证失败"),
-    SYS_ERROR("-1","系统异常"),
+    /**
+     * 用于有和数据库交互更新，一般在manager层出现
+     */
+    BNS_PRS_ERROR("-4","业务处理异常"),
+    /**
+     * 一般用于service，用于用户逻辑判断
+     */
+    BNS_CHK_ERROR("-3","业务校验异常"),
+    SYS_ERROR("-2","系统异常"),
     UNKNOWN_ERROR("-1","未知异常");
     private final String code;
     private final String message ;
