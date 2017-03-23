@@ -13,8 +13,14 @@ import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 import org.apache.commons.lang3.time.StopWatch;
 import org.objenesis.ObjenesisStd;
+import org.springframework.validation.BindingResult;
 
+import javax.servlet.Servlet;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @description: Controller 拦截处理
@@ -93,12 +99,24 @@ public class ControllerResultInterceptor implements MethodInterceptor {
      */
     private BaseResult exceptionProcessor(MethodInvocation invocation, Throwable e,BaseErrorEnum baseErrorEnum) {
         Object[] args = invocation.getArguments();
+        List<Object> list =  new ArrayList();
+
+        for (Object arg:args){
+            if (arg instanceof BindingResult ||arg instanceof ServletResponse || arg instanceof ServletRequest || arg instanceof Servlet){
+                continue;
+            }
+            list.add(arg);
+        }
+
         Method method = invocation.getMethod();
         String methodName = method.getDeclaringClass().getName() + "." + method.getName();
-        log.error("服务[method=" + methodName + "] params={}" + new Gson().toJson(args) + "异常：", e);
+        if (!list.isEmpty())
+            log.error("服务[method=" + methodName + "] params={}" + new Gson().toJson(list) + "异常：", e);
+        else
+            log.error("服务[method=" + methodName + "] params={}" + new Gson().toJson(null) + "异常：", e);
         BaseResult result = getBaseResult(invocation);
         result.setCode(baseErrorEnum.getCode());
-        result.setMessage(StringUtil.isNotEmpty(e.getMessage())?e.getMessage():baseErrorEnum.getMessage());
+        result.setMessage(baseErrorEnum.getMessage());
         result.setSuccess(false);
         return result;
     }
