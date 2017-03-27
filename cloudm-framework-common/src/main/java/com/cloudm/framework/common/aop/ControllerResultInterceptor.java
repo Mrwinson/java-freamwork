@@ -7,6 +7,8 @@ import com.cloudm.framework.common.ex.BusinessCheckFailException;
 import com.cloudm.framework.common.ex.BusinessProcessFailException;
 import com.cloudm.framework.common.util.StringUtil;
 import com.cloudm.framework.common.web.result.base.BaseResult;
+import com.cloudm.framework.common.web.result.base.ServiceError;
+import com.google.common.collect.Lists;
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.aopalliance.intercept.MethodInterceptor;
@@ -65,10 +67,10 @@ public class ControllerResultInterceptor implements MethodInterceptor {
             return result;
         } catch (BusinessProcessFailException e) {
             watch.stop();
-            result = exceptionProcessor(invocation,e,BaseErrorEnum.BNS_PRS_ERROR);
+            result = exceptionProcessor(invocation,e,e.getErrorCode(),e.getMessage(),BaseErrorEnum.BNS_PRS_ERROR);
         } catch (BusinessCheckFailException e) {
             watch.stop();
-            result = exceptionProcessor(invocation,e,BaseErrorEnum.BNS_CHK_ERROR);
+            result = exceptionProcessor(invocation,e,e.getErrorCode(),e.getMessage(),BaseErrorEnum.BNS_CHK_ERROR);
         } catch (Exception e) {
             watch.stop();
             result = exceptionProcessor(invocation,e,BaseErrorEnum.UNKNOWN_ERROR);
@@ -93,11 +95,11 @@ public class ControllerResultInterceptor implements MethodInterceptor {
     /**
      * 异常处理 记录日志并返回result对象
      * @param invocation
-     * @param baseErrorEnum  {@link BaseErrorEnum}
+     * @param serviceError  {@link BaseErrorEnum}
      * @param e
      * @return
      */
-    private BaseResult exceptionProcessor(MethodInvocation invocation, Throwable e,BaseErrorEnum baseErrorEnum) {
+    private BaseResult exceptionProcessor(MethodInvocation invocation, Throwable e,String errorCode,String message,ServiceError serviceError) {
         Object[] args = invocation.getArguments();
         List<Object> list =  new ArrayList();
 
@@ -115,9 +117,12 @@ public class ControllerResultInterceptor implements MethodInterceptor {
         else
             log.error("服务[method=" + methodName + "] params={}" + new Gson().toJson(null) + "异常：", e);
         BaseResult result = getBaseResult(invocation);
-        result.setCode(baseErrorEnum.getCode());
-        result.setMessage(baseErrorEnum.getMessage());
+        result.setCode(StringUtil.isNotEmpty(errorCode)?errorCode:serviceError.getCode());
+        result.setMessage(StringUtil.isNotEmpty(message)?message:serviceError.getMessage());
         result.setSuccess(false);
         return result;
+    }
+    private BaseResult exceptionProcessor(MethodInvocation invocation, Throwable e,ServiceError serviceError){
+        return exceptionProcessor(invocation,e,null,null,serviceError);
     }
 }

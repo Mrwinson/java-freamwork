@@ -1,6 +1,7 @@
 package com.cloudm.framework.common.aop;
 
 import com.cloudm.framework.common.enums.BaseErrorEnum;
+import com.cloudm.framework.common.util.StringUtil;
 import com.cloudm.framework.common.web.result.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -35,7 +36,11 @@ public class BindingResultAop {
                 StringBuilder msg = new StringBuilder();
                 for(ObjectError error :errors){
                     msg.append(error.getDefaultMessage());
-                    msg.append("\n");
+
+                    msg.append(";");
+                }
+                if (StringUtil.isEmpty(msg.toString())){
+                    msg.append(BaseErrorEnum.VALIDATE_ERROR.getMessage()+";");
                 }
 //                MethodSignature signature = (MethodSignature) joinPoint.getSignature();
 //                Method method = signature.getMethod();
