@@ -10,19 +10,19 @@ import com.cloudm.framework.common.web.result.base.ServiceError;
 public class BusinessCheckFailException extends RuntimeException {
 
     private static final long serialVersionUID = -346427066798778452L;
-    private final String errorCode;
+    private final Integer errorCode;
 
     public BusinessCheckFailException(final ServiceError errors) {
         super(errors.getMessage());
         this.errorCode = errors.getCode();
     }
 
-    public BusinessCheckFailException(final String errorCode, final String message) {
+    public BusinessCheckFailException(final Integer errorCode, final String message) {
         super(message);
         this.errorCode = errorCode;
     }
 
-    public String getErrorCode() {
+    public Integer getErrorCode() {
         return errorCode;
     }
 

@@ -51,7 +51,7 @@ public class Result<T> extends BaseResult implements Serializable{
      * @param <D> 泛型
      * @return
      */
-    public static <D> Result<D> wrapErrorResult(String code, String message) {
+    public static <D> Result<D> wrapErrorResult(Integer code, String message) {
         Result<D> result = new Result<D>();
         result.success = false;
         result.code = code;

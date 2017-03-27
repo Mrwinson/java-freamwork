@@ -9,7 +9,7 @@ import java.io.Serializable;
  */
 public class BaseResult implements Serializable {
     private static final long serialVersionUID = -4205541359679710511L;
-    protected static final String SUCCESS_CODE="1";
+    protected static final Integer SUCCESS_CODE=800;
     /**
      * 是否成功
      */
@@ -18,7 +18,7 @@ public class BaseResult implements Serializable {
     /**
      * 返回码
      */
-    protected String code;
+    protected Integer code;
 
     /**
      * 返回信息
@@ -49,7 +49,7 @@ public class BaseResult implements Serializable {
      * 返回码
      * @return 返回码
      */
-    public String getCode() {
+    public Integer getCode() {
         return code;
     }
 
@@ -57,7 +57,7 @@ public class BaseResult implements Serializable {
      * 设置返回码
      * @param code
      */
-    public void setCode(String code) {
+    public void setCode(Integer code) {
         this.code = code;
     }
 

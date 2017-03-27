@@ -13,9 +13,10 @@ public enum  BaseBizEnum {
     YN_Y(1, "已删除"),
     YN_N(0, "未删除"),
     DEFAULT_USER(0,"系统管理员"),
-    SAVE_SUCCESS(1,"保存成功！"),
-    UPDATE_SUCCESS(1,"更新成功"),
-    DELETE_SUCCESS(1,"删除成功");
+    SAVE_SUCCESS(800,"保存成功！"),
+    UPDATE_SUCCESS(800,"更新成功"),
+    DELETE_SUCCESS(800,"删除成功"),
+    OK(800,"调用成功");
 
     private Integer code;
     private String message;

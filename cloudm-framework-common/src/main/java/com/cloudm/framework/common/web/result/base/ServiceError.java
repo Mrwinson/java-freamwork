@@ -11,7 +11,7 @@ public interface ServiceError {
      * 错误码
      * @return 返回错误码
      */
-    String getCode();
+    Integer getCode();
 
     /**
      * 返回错误信息

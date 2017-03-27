@@ -99,7 +99,7 @@ public class ControllerResultInterceptor implements MethodInterceptor {
      * @param e
      * @return
      */
-    private BaseResult exceptionProcessor(MethodInvocation invocation, Throwable e,String errorCode,String message,ServiceError serviceError) {
+    private BaseResult exceptionProcessor(MethodInvocation invocation, Throwable e,Integer errorCode,String message,ServiceError serviceError) {
         Object[] args = invocation.getArguments();
         List<Object> list =  new ArrayList();
 
@@ -117,7 +117,7 @@ public class ControllerResultInterceptor implements MethodInterceptor {
         else
             log.error("服务[method=" + methodName + "] params={}" + new Gson().toJson(null) + "异常：", e);
         BaseResult result = getBaseResult(invocation);
-        result.setCode(StringUtil.isNotEmpty(errorCode)?errorCode:serviceError.getCode());
+        result.setCode(errorCode!=null?errorCode:serviceError.getCode());
         result.setMessage(StringUtil.isNotEmpty(message)?message:serviceError.getMessage());
         result.setSuccess(false);
         return result;

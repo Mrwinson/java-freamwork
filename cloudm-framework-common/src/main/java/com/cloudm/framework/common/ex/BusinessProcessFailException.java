@@ -17,7 +17,7 @@ public class BusinessProcessFailException extends RuntimeException{
     /**
      * 错误码
      */
-    private final String errorCode;
+    private final Integer errorCode;
 
     /**
      * 通过ServiceError接口构造
@@ -33,7 +33,7 @@ public class BusinessProcessFailException extends RuntimeException{
      * @param message 错误信息
      * @param errorCode 错误编码
      */
-    public BusinessProcessFailException(final String message , final String errorCode) {
+    public BusinessProcessFailException(final String message , final Integer errorCode) {
         super(message);
         this.errorCode = errorCode;
     }
@@ -44,7 +44,7 @@ public class BusinessProcessFailException extends RuntimeException{
      * @param cause
      * @param errorCode
      */
-    public BusinessProcessFailException(final String message, final Throwable cause, final String errorCode) {
+    public BusinessProcessFailException(final String message, final Throwable cause, final Integer errorCode) {
         super(message, cause);
         this.errorCode = errorCode;
     }
@@ -54,7 +54,7 @@ public class BusinessProcessFailException extends RuntimeException{
      * @param cause
      * @param errorCode
      */
-    public BusinessProcessFailException(final Throwable cause, final String errorCode) {
+    public BusinessProcessFailException(final Throwable cause, final Integer errorCode) {
         super(cause);
         this.errorCode = errorCode;
     }
@@ -63,11 +63,11 @@ public class BusinessProcessFailException extends RuntimeException{
      * 错误码构造
      * @param errorCode
      */
-    public BusinessProcessFailException(final String errorCode) {
+    public BusinessProcessFailException(final Integer errorCode) {
         this.errorCode = errorCode;
     }
 
-    public String getErrorCode() {
+    public Integer getErrorCode() {
         return errorCode;
     }
 }

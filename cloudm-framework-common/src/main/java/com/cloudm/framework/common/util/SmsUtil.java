@@ -49,7 +49,7 @@ public class SmsUtil {
             TaobaoClient client = new DefaultTaobaoClient(url, appkey, secret);
             AlibabaAliqinFcSmsNumSendRequest req = new AlibabaAliqinFcSmsNumSendRequest();
             req.setExtend("123456");
-            req.setSmsType("normal");
+            req.setSmsType(SMS_TYPE);
             req.setSmsFreeSignName(sms_free_sign_name);
             req.setSmsParamString(sms_param);
             req.setRecNum(mobile);
