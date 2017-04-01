@@ -46,6 +46,7 @@ public class Result<T> extends BaseResult implements Serializable{
         result.page = springPage ;
         return  result ;
     }
+
     /**
      * 错误信息返回
      * @param error
