@@ -3,6 +3,7 @@ package com.cloudm.framework.common.web.dto.query;
 
 import lombok.Data;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -25,6 +26,7 @@ public class QueryDTO implements Serializable {
     /**
      * 操作人
      */
+    @NotNull(message = "操作员信息不能为空")
     private Integer operator ;
     /**
      * 开始时间

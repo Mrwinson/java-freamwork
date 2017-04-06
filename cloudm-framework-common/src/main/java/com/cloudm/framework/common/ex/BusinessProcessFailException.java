@@ -1,5 +1,6 @@
 package com.cloudm.framework.common.ex;
 
+import com.cloudm.framework.common.enums.BaseErrorEnum;
 import com.cloudm.framework.common.web.result.base.ServiceError;
 
 /**
@@ -27,6 +28,15 @@ public class BusinessProcessFailException extends RuntimeException{
         super(errors.getMessage());
         this.errorCode = errors.getCode();
     }
+    /**
+     * 通过错误信息接口构造
+     * @param message
+     */
+    public BusinessProcessFailException(final String message) {
+        super(message);
+        this.errorCode = BaseErrorEnum.BNS_PRS_ERROR.getCode();
+    }
+
 
     /**
      * 用错误码和错误信息构造
