@@ -18,6 +18,7 @@ public final class ConfigHelper {
 
     private static final Properties COFNIG_PROPS = PropsUtil.loadProps(ConfigConstant.CONFIG_FILE) ;
 
+
     /**
      * 获取 jpush app key
      * @return
