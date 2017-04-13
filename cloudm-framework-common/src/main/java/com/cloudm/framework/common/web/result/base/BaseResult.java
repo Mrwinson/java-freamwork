@@ -1,4 +1,6 @@
 package com.cloudm.framework.common.web.result.base;
+import com.cloudm.framework.common.enums.BaseBizEnum;
+
 import java.io.Serializable;
 
 /**
@@ -9,7 +11,7 @@ import java.io.Serializable;
  */
 public class BaseResult implements Serializable {
     private static final long serialVersionUID = -4205541359679710511L;
-    protected static final Integer SUCCESS_CODE=800;
+    protected static final Integer SUCCESS_CODE= BaseBizEnum.OK.getCode();
     /**
      * 是否成功
      */

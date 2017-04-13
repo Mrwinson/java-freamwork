@@ -32,6 +32,22 @@ public class Result<T> extends BaseResult implements Serializable{
         result.code=SUCCESS_CODE ;
         return result;
     }
+
+    /**
+     * 返回成功，带提示信息
+     * @param data
+     * @param message
+     * @param <D>
+     * @return
+     */
+    public static <D> Result<D> wrapSuccessfulResult(D data,String message) {
+        Result<D> result = new Result<D>();
+        result.result = data;
+        result.success = true;
+        result.code=SUCCESS_CODE ;
+        result.setMessage(message);
+        return result;
+    }
     /**
      * 成功返回数据列表
      * @param data 数据对象
@@ -46,7 +62,20 @@ public class Result<T> extends BaseResult implements Serializable{
         result.page = springPage ;
         return  result ;
     }
-
+    /**
+     * 成功返回数据列表,带提示信息
+     * @param data 数据对象
+     * @param pageable 分页参数
+     * @param total 总条数
+     * @param <D>
+     * @return list集合
+     */
+    public static  <D> Result<D> wrapSuccessfulResult(D data, Pageable pageable, int total,String message){
+        Page springPage = PageUtil.newPage(Lists.newArrayList(),pageable,total);
+        Result<D> result =wrapSuccessfulResult(data,message);
+        result.page = springPage ;
+        return  result ;
+    }
     /**
      * 错误信息返回
      * @param error
