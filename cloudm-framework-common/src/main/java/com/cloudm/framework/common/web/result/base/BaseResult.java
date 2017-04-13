@@ -13,7 +13,7 @@ public class BaseResult implements Serializable {
     /**
      * 是否成功
      */
-    protected boolean success;
+    protected Boolean success;
 
     /**
      * 返回码
@@ -33,7 +33,7 @@ public class BaseResult implements Serializable {
      * 是否成功
      * @return true成功，false失败
      */
-    public boolean isSuccess() {
+    public Boolean isSuccess() {
         return success;
     }
 
@@ -41,7 +41,7 @@ public class BaseResult implements Serializable {
      * 设置是否成功
      * @param success false：失败，true：成功
      */
-    public void setSuccess(boolean success) {
+    public void setSuccess(Boolean success) {
         this.success = success;
     }
 

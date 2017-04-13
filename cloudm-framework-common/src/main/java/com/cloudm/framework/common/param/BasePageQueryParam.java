@@ -6,7 +6,7 @@ import lombok.Setter;
 import java.util.List;
 
 /**
- * @description:
+ * @description: 查询参数基类
  * @author: Courser
  * @date: 2017/3/23
  * @version: V1.0
@@ -21,9 +21,9 @@ public class BasePageQueryParam {
     /**
      * 限制条数
      */
-    private int limit;
+    private Integer limit;
     /**
      * 限制开始条数
      */
-    private int offset;
+    private Integer offset;
 }
