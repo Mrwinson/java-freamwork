@@ -5,7 +5,9 @@ import com.cloudm.framework.common.core.KeyedNamed;
 import java.util.*;
 
 /**
- * @description:  枚举工具类，主要用来根据状态的key获取对应的name以供显示
+ * @description:  枚举工具类，主要用来根据状态的key获取对应的name以供显示。
+ * 使用场景：1.返回给客户端的状态不要在前端转换，在后台直接可以转换掉，让前台直接展示
+ * 2.下来框的key-value映射
  * @author: Courser
  * @date: 2017/4/13
  * @version: V1.0

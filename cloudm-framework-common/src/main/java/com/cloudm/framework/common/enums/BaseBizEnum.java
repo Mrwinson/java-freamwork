@@ -1,7 +1,7 @@
 package com.cloudm.framework.common.enums;
 
 /**
- * @description: 业务需求的常亮
+ * @description: 业务需求的常量
  * @author: Courser
  * @date: 2017/3/21
  * @version: V1.0

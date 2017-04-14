@@ -3,7 +3,7 @@ package com.cloudm.framework.common.enums;
 import com.cloudm.framework.common.web.result.base.ServiceError;
 
 /**
- * @description: 基础的异常异常枚举
+ * @description: 基础的异常异常枚举，用于基层封装从底层抛出捕获
  * @author: Courser
  * @date: 2017/3/20
  * @version: V1.0
