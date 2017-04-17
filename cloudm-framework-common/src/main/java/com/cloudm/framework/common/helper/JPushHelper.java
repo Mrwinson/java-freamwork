@@ -128,6 +128,9 @@ public class JPushHelper {
         return l;
     }
 
+
+
+
     /**
      * 按别名发送到单个用户
      *
@@ -271,4 +274,68 @@ public class JPushHelper {
     }
 
 
+
+
+    /**
+     * 按别名发送到单个用户
+     * @param map
+     * @param alias
+     * @param msg
+     * @param page
+     * @param time
+     * @return 0:不成功 1:android成功,IOS不成功 2:IOS成功,android不成功 3.都成功
+     */
+    public static long pushByAlias(long alias, String msg, int page, int time,Map<String, String> map) {
+        long l = 0;
+        JPushClient jpushClient = new JPushClient(masterSecret, appKey, 3);
+        try {
+            PushPayload pushPayload = PushPayload
+                    .newBuilder()
+                    .setOptions(
+                            Options.newBuilder()
+                                    .setApnsProduction(apnsProduction).build())
+                    .setOptions(
+                            Options.newBuilder().setBigPushDuration(time)
+                                    .build()).setPlatform(Platform.android())
+                    .setAudience(Audience.alias(String.valueOf(alias)))
+                    .setNotification(Notification.android(msg, null, map))
+                    .build();
+            l += 1;
+        } catch (Exception e) {
+        }
+        try {
+            PushPayload pushPayload = PushPayload
+                    .newBuilder()
+                    .setPlatform(Platform.ios())
+
+                    .setOptions(
+                            Options.newBuilder().setBigPushDuration(time)
+                                    .build())
+                    .setAudience(Audience.alias(String.valueOf(alias)))
+                    .setNotification(
+                            Notification
+                                    .newBuilder()
+                                    .addPlatformNotification(
+                                            IosNotification.newBuilder()
+                                                    .setSound("default")
+                                                    .setAlert(msg)
+                                                    .addExtras(map).build())
+                                    .build())
+                    .setOptions(
+                            Options.newBuilder()
+                                    .setApnsProduction(apnsProduction).build())
+                    .build();
+            PushResult result = jpushClient.sendPush(pushPayload);
+            System.out.println("result ios=" + result.isResultOK());
+            l += 2;
+        } catch (Exception e) {
+            // e.printStackTrace();
+            // e.printStackTrace();
+            // ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            // e.printStackTrace(new PrintStream(baos));
+            // String exception = baos.toString();
+            // System.out.println("exception:" + exception);
+        }
+        return l;
+    }
 }
