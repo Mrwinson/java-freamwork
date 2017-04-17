@@ -7,9 +7,17 @@ package com.cloudm.framework.common.enums;
  * @version: V1.0
  */
 public enum  BaseBizEnum {
-    ZERRO(0, "阿拉伯数字0"),
-    FRIST(1, "阿拉伯数字1"),
-    SECOND(2, "阿里伯数字2"),
+    ZERRO(0, "零"),
+    FRIST(1, "一"),
+    SECOND(2, "二"),
+    THREE(3, "三"),
+    FOUR(4, "四"),
+    FIVE(5, "五"),
+    SIX(6, "六"),
+    SEVEN(7, "七"),
+    EIGHT(8, "八"),
+    NINE(9, "九"),
+    TEN(10, "十"),
     OK(800,"调用成功"),
     YN_Y(BaseBizEnum.FRIST.getCode(), "已删除"),
     YN_N(BaseBizEnum.ZERRO.getCode(), "未删除"),
