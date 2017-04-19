@@ -24,18 +24,21 @@ public class QueryDTO implements Serializable {
      */
     private Integer creator;
     /**
-     * 操作人
+     * 创建开始时间
      */
-    @NotNull(message = "操作员信息不能为空")
-    private Integer operator ;
+    private Date gmtCreateStart ;
     /**
-     * 开始时间
+     * 创建结束时间
      */
-    private Date beginTime ;
+    private Date gmtCreateEnd ;
     /**
-     * 结束时间
+     * 修改开始时间
      */
-    private Date endTime ;
+    private Date gmtModifiedStart ;
+    /**
+     * 修改结束时间
+     */
+    private Date gmtModifiedEnd ;
     /**
      * 是否删除
      */
