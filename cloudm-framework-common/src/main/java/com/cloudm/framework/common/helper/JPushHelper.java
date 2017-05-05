@@ -302,6 +302,8 @@ public class JPushHelper {
                     .setAudience(Audience.alias(String.valueOf(alias)))
                     .setNotification(Notification.android(msg, title, map))
                     .build();
+            PushResult result = jpushClient.sendPush(pushPayload);
+            System.out.println("result android=" + result.isResultOK());
             l += 1;
         } catch (Exception e) {
             log.error("Jpush send android is error ==>{}",e);
