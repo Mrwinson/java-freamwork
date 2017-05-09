@@ -104,7 +104,7 @@
                     <artifactId>commons-logging</artifactId>
                 </exclusion>
             </exclusions>
-            <version>4.2.5.RELEASE</version>
+            <version>${springframework-version}</version>
         </dependency>
         <dependency>
             <groupId>cloudm</groupId>
