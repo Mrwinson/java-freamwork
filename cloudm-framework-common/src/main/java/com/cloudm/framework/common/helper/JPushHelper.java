@@ -303,8 +303,12 @@ public class JPushHelper {
                     .setNotification(Notification.android(msg, title, map))
                     .build();
             PushResult result = jpushClient.sendPush(pushPayload);
-            System.out.println("result android=" + result.isResultOK());
-            l += 1;
+            if(null!=result && result.isResultOK()==true){//推送成功，返回true，l+1
+                if(log.isInfoEnabled()){
+                    log.info("result android={}" , result.isResultOK());
+                }
+                l += 1;
+            }
         } catch (Exception e) {
             log.error("Jpush send android is error ==>{}",e);
             throw new BusinessCheckFailException(BaseErrorEnum.SYS_ERROR);
@@ -325,8 +329,12 @@ public class JPushHelper {
                                     .build())
                     .build();
             PushResult result = jpushClient.sendPush(pushPayload);
-            System.out.println("result ios=" + result.isResultOK());
-            l += 2;
+            if(null!=result && result.isResultOK()==true){//推送成功，返回true，l+2
+                if(log.isInfoEnabled()){
+                    log.info("result ios={}" , result.isResultOK());
+                }
+                l += 2;
+            }
         } catch (Exception e) {
             log.error("Jpush send ios is error ==>{}",e);
             throw new BusinessCheckFailException(BaseErrorEnum.SYS_ERROR);
