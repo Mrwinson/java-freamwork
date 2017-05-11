@@ -16,7 +16,7 @@ import java.util.*;
  *
  * 实体对象工具类
  *
- * Created by gry on 2014/8/14.
+ * Created by jackson on 2017/5/11.
  *
  */
 @Slf4j
