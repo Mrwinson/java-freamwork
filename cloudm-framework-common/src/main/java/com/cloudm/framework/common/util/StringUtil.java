@@ -37,6 +37,30 @@ public class StringUtil {
     }
 
     /**
+     * 通过循环对象数组参数列表(中间用分隔符相隔)，获取新的字符串
+     * @param separator 分隔符 如："_"
+     * @param arrays 如：String "abc", String "ddd"
+     * @return 获取新的字符串 如： "abc_ddd"
+     * @author liuting
+     */
+    public static String getStringByArraySplitSeparator(String separator, Object[] arrays) {
+        if (isEmpty(separator) || arrays == null || arrays.length == 0) {
+            return null;
+        }
+        StringBuilder stringBuilder = new StringBuilder("");
+        for (Object val : arrays) {
+            if (val != null) {
+                stringBuilder.append(val).append(separator);
+            }
+        }
+        String targetVar = stringBuilder.toString();
+        if (isEmpty(targetVar)) {
+            return targetVar;
+        }
+        return targetVar.substring(0, stringBuilder.length() - separator.length());
+    }
+
+    /**
      * 判断字符串是否是空白
      *
      * <pre>
