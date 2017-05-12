@@ -2,6 +2,7 @@ package com.cloudm.framework.common.util;
 
 import com.cloudm.framework.common.ex.BusinessProcessFailException;
 
+import java.nio.ByteBuffer;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -559,5 +560,31 @@ public class DateUtil {
         return calendar.get(Calendar.DAY_OF_MONTH);
     }
 
+    /**
+     * 获取当前时间byte数组
+     * <pre>
+     *  2017年5月12日13点47分55秒
+     *  System.currentTimeMillis() = 1494568062655l;
+     *  DateUtil.getTimeBytes() = {0x17,0x05,0x12,0x13,0x47,0x55}
+     * </pre>
+     * @return
+     */
+    public static byte[] getTimeBytes() {
+        ByteBuffer buf = ByteBuffer.allocate(6);
+        Calendar value = Calendar.getInstance();
+        byte b1 = (byte) (value.get(Calendar.YEAR) - 2000);
+        byte b2 = (byte) (value.get(Calendar.MONTH) + 1);
+        byte b3 = (byte) value.get(Calendar.DATE);
+        byte b4 = (byte) value.get(Calendar.HOUR_OF_DAY);
+        byte b5 = (byte) value.get(Calendar.MINUTE);
+        byte b6 = (byte) value.get(Calendar.SECOND);
 
+        buf.put(Byte.parseByte(String.valueOf(b1),16));
+        buf.put(Byte.parseByte(String.valueOf(b2),16));
+        buf.put(Byte.parseByte(String.valueOf(b3),16));
+        buf.put(Byte.parseByte(String.valueOf(b4),16));
+        buf.put(Byte.parseByte(String.valueOf(b5),16));
+        buf.put(Byte.parseByte(String.valueOf(b6),16));
+        return buf.array();
+    }
 }
