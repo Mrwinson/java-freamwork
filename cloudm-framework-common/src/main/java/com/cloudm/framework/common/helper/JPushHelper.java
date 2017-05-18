@@ -311,7 +311,7 @@ public class JPushHelper {
             }
         } catch (Exception e) {
             log.error("Jpush send android is error ==>{}",e);
-            throw new BusinessCheckFailException(BaseErrorEnum.SYS_ERROR);
+//            throw new BusinessCheckFailException(BaseErrorEnum.SYS_ERROR);
         }
         try {
             PushPayload pushPayload = PushPayload
@@ -337,7 +337,7 @@ public class JPushHelper {
             }
         } catch (Exception e) {
             log.error("Jpush send ios is error ==>{}",e);
-            throw new BusinessCheckFailException(BaseErrorEnum.SYS_ERROR);
+//            throw new BusinessCheckFailException(BaseErrorEnum.SYS_ERROR);
         }
         return l;
     }
