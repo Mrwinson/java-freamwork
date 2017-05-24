@@ -69,10 +69,10 @@ public class JPushHelper {
 
     /**
      * 构造私有PushPayLoad
-     * @param platform
-     * @param notification
-     * @param alias
-     * @param time
+     * @param platform 平台
+     * @param notification 通知
+     * @param alias 别名
+     * @param time 持续时间
      * @return
      */
     private static PushPayload getPushPayload(Platform platform,Notification notification,long alias, int time) {

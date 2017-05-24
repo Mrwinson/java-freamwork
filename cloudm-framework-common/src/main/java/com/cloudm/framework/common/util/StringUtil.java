@@ -163,4 +163,36 @@ public class StringUtil {
         }
         return buf.toString();
     }
+
+    /**
+     * 根据当前的流水号，生成下一个流水号
+     * 当前是001 下一个002
+     * 当前是005 下一个006
+     * @param curGlideNumber 当前的流水号
+     * @return
+     * String 10005  ----整形  10005
+     * 整形 10005+1    ----整形 10006
+     * 整形10006      ----String 10006
+     * String 10006  ----截取 0006
+     */
+    public  static String geneNextGlideNumber(String curGlideNumber) {
+
+        curGlideNumber="1"+curGlideNumber;
+        Integer icurGlideNumber=Integer.parseInt(curGlideNumber);
+        icurGlideNumber++;
+        curGlideNumber=icurGlideNumber+"";
+        curGlideNumber=curGlideNumber.substring(1);
+        return curGlideNumber;
+    }
+
+    /**
+     * 生成序列号
+     * @param number 数字
+     * @param length 长度
+     * @return
+     */
+    public static String genGildeNumber(Integer number,Integer length){
+        return String.format("%0"+length+"d",number);
+    }
+
 }
