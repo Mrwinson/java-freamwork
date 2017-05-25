@@ -15,6 +15,6 @@ import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
      */
     @Override
     protected Object determineCurrentLookupKey() {
-        return DataSourceContextHolder.getDbName();
+        return DataSourceContextHolder.getDsName();
     }
 }

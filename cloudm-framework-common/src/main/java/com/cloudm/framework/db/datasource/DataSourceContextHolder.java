@@ -15,24 +15,24 @@ public class DataSourceContextHolder {
 
     /**
      * 设置 数据库datasource;
-     * @param dbName
+     * @param dsName
      */
-    public static void setDbName(String dbName) {
-        contextHolder.set(dbName);
+    public static void setDsName(String dsName) {
+        contextHolder.set(dsName);
     }
 
     /**
      * 获取 数据源名称
      * @return
      */
-    public static String getDbName() {
+    public static String getDsName() {
         return ((String) contextHolder.get());
     }
 
     /**
      * 清除数据源
      */
-    public static void clearDbName() {
+    public static void clearDsName() {
         contextHolder.remove();
     }
 }
