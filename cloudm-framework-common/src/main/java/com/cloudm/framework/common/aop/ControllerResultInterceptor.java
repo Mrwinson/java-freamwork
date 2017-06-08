@@ -15,6 +15,7 @@ import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 import org.apache.commons.lang3.time.StopWatch;
 import org.objenesis.ObjenesisStd;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 
 import javax.servlet.Servlet;
@@ -44,6 +45,9 @@ import java.util.List;
 public class ControllerResultInterceptor implements MethodInterceptor {
     private ObjenesisStd generator = new ObjenesisStd();
 
+    @Autowired
+    private ExceptionInterceptor exceptionInterceptor;
+
     /**
      * 环绕通知
      * @param invocation
@@ -67,62 +71,15 @@ public class ControllerResultInterceptor implements MethodInterceptor {
             return result;
         } catch (BusinessProcessFailException e) {
             watch.stop();
-            result = exceptionProcessor(invocation,e,e.getErrorCode(),e.getMessage(),BaseErrorEnum.BNS_PRS_ERROR);
+            result = exceptionInterceptor.exceptionProcessor(invocation,e,e.getErrorCode(),e.getMessage(),BaseErrorEnum.BNS_PRS_ERROR);
         } catch (BusinessCheckFailException e) {
             watch.stop();
-            result = exceptionProcessor(invocation,e,e.getErrorCode(),e.getMessage(),BaseErrorEnum.BNS_CHK_ERROR);
+            result = exceptionInterceptor.exceptionProcessor(invocation,e,e.getErrorCode(),e.getMessage(),BaseErrorEnum.BNS_CHK_ERROR);
         } catch (Exception e) {
             watch.stop();
-            result = exceptionProcessor(invocation,e,BaseErrorEnum.UNKNOWN_ERROR);
+            result = exceptionInterceptor.exceptionProcessor(invocation,e,BaseErrorEnum.UNKNOWN_ERROR);
         }
         return result;
     }
 
-    /**
-     * 反射获取返回值对象
-     * @param methodInvocation 目标方法
-     * @return
-     */
-
-    private BaseResult getBaseResult(MethodInvocation methodInvocation) {
-        Class<?> returnType = methodInvocation.getMethod().getReturnType();
-        BaseResult result = (BaseResult) generator.newInstance(returnType);
-        return result;
-    }
-
-
-
-    /**
-     * 异常处理 记录日志并返回result对象
-     * @param invocation
-     * @param serviceError  {@link BaseErrorEnum}
-     * @param e
-     * @return
-     */
-    private BaseResult exceptionProcessor(MethodInvocation invocation, Throwable e,Integer errorCode,String message,ServiceError serviceError) {
-        Object[] args = invocation.getArguments();
-        List<Object> list =  new ArrayList();
-
-        for (Object arg:args){
-            if (arg instanceof BindingResult ||arg instanceof ServletResponse || arg instanceof ServletRequest || arg instanceof Servlet){
-                continue;
-            }
-            list.add(arg);
-        }
-
-        Method method = invocation.getMethod();
-        String methodName = method.getDeclaringClass().getName() + "." + method.getName();
-        if (!list.isEmpty())
-            log.error("服务[method=" + methodName + "] params={}" + new Gson().toJson(list) + "异常：", e);
-        else
-            log.error("服务[method=" + methodName + "] params={}" + new Gson().toJson(null) + "异常：", e);
-        BaseResult result = getBaseResult(invocation);
-        result.setCode(errorCode!=null?errorCode:serviceError.getCode());
-        result.setMessage(StringUtil.isNotEmpty(message)?message:serviceError.getMessage());
-        result.setSuccess(false);
-        return result;
-    }
-    private BaseResult exceptionProcessor(MethodInvocation invocation, Throwable e,ServiceError serviceError){
-        return exceptionProcessor(invocation,e,null,null,serviceError);
-    }
 }
