@@ -17,7 +17,7 @@ package com.cloudm.framework.db.datasource;
      * 设置 数据库datasource;
      * @param dsName
      */
-     static void setDsName(String dsName) {
+     public static void setDsName(String dsName) {
         contextHolder.set(dsName);
     }
 
@@ -25,14 +25,14 @@ package com.cloudm.framework.db.datasource;
      * 获取 数据源名称
      * @return
      */
-     static String getDsName() {
+     public static String getDsName() {
         return ((String) contextHolder.get());
     }
 
     /**
      * 清除数据源
      */
-     static void clearDsName() {
+     public static void clearDsName() {
         contextHolder.remove();
     }
 }
