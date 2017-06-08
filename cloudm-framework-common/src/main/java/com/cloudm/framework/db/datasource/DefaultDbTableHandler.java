@@ -13,6 +13,10 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class DefaultDbTableHandler {
+
+    public static void clearDsName() {
+        DataSourceContextHolder.clearDsName();
+    }
     /**
      * 最大设备分组
      */

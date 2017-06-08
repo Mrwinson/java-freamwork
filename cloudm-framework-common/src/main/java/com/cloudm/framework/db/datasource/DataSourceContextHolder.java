@@ -6,7 +6,7 @@ package com.cloudm.framework.db.datasource;
  * @date: 2017/5/10
  * @version: V1.0
  */
-public class DataSourceContextHolder {
+ class DataSourceContextHolder {
 
     /**
      * 本地安全线程
@@ -17,7 +17,7 @@ public class DataSourceContextHolder {
      * 设置 数据库datasource;
      * @param dsName
      */
-    public static void setDsName(String dsName) {
+     static void setDsName(String dsName) {
         contextHolder.set(dsName);
     }
 
@@ -25,14 +25,14 @@ public class DataSourceContextHolder {
      * 获取 数据源名称
      * @return
      */
-    public static String getDsName() {
+     static String getDsName() {
         return ((String) contextHolder.get());
     }
 
     /**
      * 清除数据源
      */
-    public static void clearDsName() {
+     static void clearDsName() {
         contextHolder.remove();
     }
 }
