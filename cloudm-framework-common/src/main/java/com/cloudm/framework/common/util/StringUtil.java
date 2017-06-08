@@ -146,4 +146,21 @@ public class StringUtil {
         return !isAnyBlank(css);
     }
 
+    /**
+     * 将byte数组转化为String
+     * <pre>
+     *       byte[] b = {0x0F,0xDD}
+     *     StringUtil.byteToString(b)="0FDD"
+     *
+     * <pre/>
+     * @param data
+     * @return
+     */
+    public static String byteToString(byte[] data) {
+        StringBuffer buf = new StringBuffer();
+        for (int i = 0; i < data.length; i++) {
+            buf.append(String.format("%02X", data[i]));
+        }
+        return buf.toString();
+    }
 }

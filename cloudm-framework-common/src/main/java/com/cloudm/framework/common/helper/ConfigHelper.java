@@ -84,4 +84,8 @@ public final class ConfigHelper {
     public static  String  getSmsTemplateCode(){
         return PropsUtil.getString(COFNIG_PROPS,ConfigConstant.SMS_TEMPLATE_CODE);
     }
+
+    public  static String getPropsValue(String key){
+        return PropsUtil.getString(COFNIG_PROPS,key);
+    }
 }

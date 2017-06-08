@@ -290,10 +290,10 @@ public class JPushHelper {
      * @param time
      * @return 0:不成功 1:android成功,IOS不成功 2:IOS成功,android不成功 3.都成功
      */
-    public static long defaultPushByAlias(long alias, String msg, String title, int time,Map<String, String> map) {
+    public static long defaultPushByAlias(long alias, String msg, String title, int time,Map<String, String> map) throws Exception{
         long l = 0;
         JPushClient jpushClient = new JPushClient(masterSecret, appKey, 3);
-        try {
+//        try {
             PushPayload pushPayload = PushPayload
                     .newBuilder()
                     .setOptions(Options.newBuilder().setApnsProduction(apnsProduction).build())
@@ -309,12 +309,12 @@ public class JPushHelper {
                 }
                 l += 1;
             }
-        } catch (Exception e) {
-            log.error("Jpush send android is error ==>{}",e);
-            throw new BusinessCheckFailException(BaseErrorEnum.SYS_ERROR);
-        }
-        try {
-            PushPayload pushPayload = PushPayload
+//        } catch (Exception e) {
+//            log.error("Jpush send android is error ==>{}",e);
+//            throw new BusinessCheckFailException(BaseErrorEnum.SYS_ERROR);
+//        }
+//        try {
+            PushPayload pushPayloadIOS = PushPayload
                     .newBuilder()
                     .setOptions(Options.newBuilder().setApnsProduction(apnsProduction).build())
                     .setOptions(Options.newBuilder().setBigPushDuration(time).build())
@@ -328,17 +328,17 @@ public class JPushHelper {
                                                     .addExtras(map).build())
                                     .build())
                     .build();
-            PushResult result = jpushClient.sendPush(pushPayload);
-            if(null!=result && result.isResultOK()==true){//推送成功，返回true，l+2
+            PushResult resultIOS = jpushClient.sendPush(pushPayloadIOS);
+            if(null!=resultIOS && resultIOS.isResultOK()==true){//推送成功，返回true，l+2
                 if(log.isInfoEnabled()){
-                    log.info("result ios={}" , result.isResultOK());
+                    log.info("result ios={}" , resultIOS.isResultOK());
                 }
                 l += 2;
             }
-        } catch (Exception e) {
-            log.error("Jpush send ios is error ==>{}",e);
-            throw new BusinessCheckFailException(BaseErrorEnum.SYS_ERROR);
-        }
+//        } catch (Exception e) {
+//            log.error("Jpush send ios is error ==>{}",e);
+//            throw new BusinessCheckFailException(BaseErrorEnum.SYS_ERROR);
+//        }
         return l;
     }
 }
