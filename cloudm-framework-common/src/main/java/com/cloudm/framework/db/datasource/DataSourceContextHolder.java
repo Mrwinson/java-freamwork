@@ -6,7 +6,7 @@ package com.cloudm.framework.db.datasource;
  * @date: 2017/5/10
  * @version: V1.0
  */
- class DataSourceContextHolder {
+ public class DataSourceContextHolder {
 
     /**
      * 本地安全线程
