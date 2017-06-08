@@ -85,14 +85,28 @@ public class DefaultDbTableHandler {
         return config ;
 
     }
+    /**
+     * 通过设备序列号创建数据库和表名字,采用默认数据库配置
+     * 数据库后缀采用4位流水号从0开始，支持1万个数据库的横向扩展
+     * 数据库表采用7位流水号，前4位为数据库后缀，后三位为表的流水号，从1开始支持100个表
+     * @param  tableNamePrefix 数据表名前缀
+     * @param serial 设备序列号
+     *
+     * @return
+     */
+    public DynamicDbTable getDbConfig(String tableNamePrefix,Integer serial){
+        return getDbConfig(defaultDsNamePrefix,tableNamePrefix,serial) ;
+    }
 
     /**
+     * 这个API 不建议使用了 ，在2.0会被淘汰掉
      * 通过设备序列号创建数据库和表名字表明和采用默认配置
      * 数据库后缀采用4位流水号从0开始，支持1万个数据库的横向扩展
      * 数据库表采用7位流水号，前4位为数据库后缀，后三位为表的流水号，从1开始支持100个表
      * @param serial 设备序列号
      * @return
      */
+    @Deprecated
     public DynamicDbTable getDbConfig(Integer serial){
         if (null==serial){
             return  new DbTableDO(defaultDsNamePrefix,defaultDataSource);
