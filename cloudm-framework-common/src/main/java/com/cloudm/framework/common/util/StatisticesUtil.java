@@ -7,7 +7,7 @@ import java.io.*;
 import java.util.*;
 
 /**
- * @description:
+ * @description: 解析log日志数据工具类
  * @author: Courser
  * @date: 2017/6/6
  * @version: V1.0
@@ -148,7 +148,7 @@ public class StatisticesUtil {
             }
             avgTime = count / calls;
             //将数据放入对象中
-            setStatistic(className,minTime,maxTime,avgTime,calls,systemId);
+            exectTimeBO=setStatistic(className,minTime,maxTime,avgTime,calls,systemId);
             boList.add(exectTimeBO);
         }
         return boList;
