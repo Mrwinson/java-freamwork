@@ -59,7 +59,7 @@ public class DefaultDbTableHandler {
      * 通过设备序列号创建数据库和表名字
      * 数据库后缀采用4位流水号从0开始，支持1万个数据库的横向扩展
      * 数据库表采用7位流水号，前4位为数据库后缀，后三位为表的流水号，从1开始支持100个表
-     * @param  dsNamePrefix 数据库schema前缀
+     * @param  dsNamePrefix datasource bean Name
      * @param  tableNamePrefix 数据表名前缀
      * @param serial 设备序列号
      *
