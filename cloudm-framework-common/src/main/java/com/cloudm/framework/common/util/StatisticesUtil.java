@@ -23,7 +23,7 @@ public class StatisticesUtil {
      * 调用方法名，调用时间，方法名以key-value方式存储
      *
      */
-    public static List<ExectTimeBO> readFileByLines(String fileName,Integer system_id) {
+    public static List<ExectTimeBO> readFileByLines(String fileName,Integer systemId) {
         List<ExectTimeBO> boList=new ArrayList<ExectTimeBO>();
         //首先获取本机使用系统
         File file = new File(fileName);
@@ -44,7 +44,7 @@ public class StatisticesUtil {
                     int timeindex = tempString.indexOf(APPLYSTRING);
                     String time = tempString.substring(timeindex + 7, tempString.length() - 2);
                     // 将相关数据放入对象中
-                    ExectTimeBO exectTimeBO=setExectTimeBO(className,time,system_id);
+                    ExectTimeBO exectTimeBO=setExectTimeBO(className,time,systemId);
                     if (StringUtil.isNotEmpty(className)) {
                         try {
                             if (map.containsKey(className)) {
@@ -63,6 +63,7 @@ public class StatisticesUtil {
                 }
             }
             reader.close();
+            //获取数据到集合中
             boList=forCount(map);
         } catch (IOException e) {
             log.error(e.getClass()+"IO流错误",e);
