@@ -57,8 +57,7 @@ public class StatisticesUtil {
                                 map.put(className, exectTimeBOList);
                             }
                         } catch (Exception e) {
-                            log.error(e.getClass()+e.getMessage()+"出错了{}");
-                            e.printStackTrace();
+                            log.error(e.getClass()+e.getMessage()+"出错了{}",e);
                         }
                     }
                 }
@@ -66,13 +65,13 @@ public class StatisticesUtil {
             reader.close();
             boList=forCount(map);
         } catch (IOException e) {
-            log.error(e.getClass()+"IO流错误");
-            e.printStackTrace();
+            log.error(e.getClass()+"IO流错误",e);
         } finally {
             if (reader != null) {
                 try {
                     reader.close();
                 } catch (IOException e1) {
+                    log.error(e1.getClass()+"关闭IO流异常",e1);
                 }
             }
         }
