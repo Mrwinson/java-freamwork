@@ -19,6 +19,10 @@ public enum BaseErrorEnum implements ServiceError {
      */
     BNS_CHK_ERROR(-3,"业务校验异常"),
     SYS_ERROR(-2,"系统异常"),
+    SAVE_ERROR(-5,"保存失败"),
+    UPDATE_ERROR(-6,"更新失败"),
+    PARAM_FAILD(-7,"参数异常"),
+
     UNKNOWN_ERROR(-1,"未知异常");
     private final Integer code;
     private final String message ;

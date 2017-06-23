@@ -107,6 +107,21 @@ public class Result<T> extends BaseResult implements Serializable{
         result.message = message;
         return result;
     }
+    /**
+     * 错误返回,保存错误的数据
+     * @param code 错误码
+     * @param message 错误信息
+     * @param <D> 泛型
+     * @return
+     */
+    public static <D> Result<D> wrapErrorResult(D data,Integer code, String message) {
+        Result<D> result = new Result<D>();
+        result.result = data ;
+        result.success = false;
+        result.code = code;
+        result.message = message;
+        return result;
+    }
     public T getResult() {
         return result;
     }
