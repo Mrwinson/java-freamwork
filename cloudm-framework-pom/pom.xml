@@ -83,11 +83,11 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <dependency>
-            <groupId>com.cloudm.framework</groupId>
-            <artifactId>cloudm-framework-common</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.cloudm.framework</groupId>-->
+            <!--<artifactId>cloudm-framework-common</artifactId>-->
+            <!--<version>1.0-SNAPSHOT</version>-->
+        <!--</dependency>-->
 
         <!--Objenesis 对象构造器-->
         <dependency>
