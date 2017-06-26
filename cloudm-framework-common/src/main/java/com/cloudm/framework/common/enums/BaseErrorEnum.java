@@ -22,6 +22,7 @@ public enum BaseErrorEnum implements ServiceError {
     SAVE_ERROR(-5,"保存失败"),
     UPDATE_ERROR(-6,"更新失败"),
     PARAM_FAILD(-7,"参数异常"),
+    DATA_NOT_EXISTS(-8,"数据不存"),
 
     UNKNOWN_ERROR(-1,"未知异常");
     private final Integer code;
