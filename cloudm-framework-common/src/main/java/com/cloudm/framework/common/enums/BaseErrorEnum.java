@@ -23,8 +23,9 @@ public enum BaseErrorEnum implements ServiceError {
     UPDATE_ERROR(-6,"更新失败"),
     PARAM_FAILD(-7,"参数异常"),
     DATA_NOT_EXISTS(-8,"数据不存"),
-
+    RPC_ERROR(-9,"远程调用异常"),
     UNKNOWN_ERROR(-1,"未知异常");
+
     private final Integer code;
     private final String message ;
 
