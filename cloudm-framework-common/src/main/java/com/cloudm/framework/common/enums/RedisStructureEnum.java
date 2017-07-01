@@ -8,11 +8,11 @@ package com.cloudm.framework.common.enums;
  * @version: V1.0
  */
 public enum  RedisStructureEnum {
-    STR("str:","字符串结构"),
-    LIST("list:","list结构"),
-    HASH("hash:","map结构"),
-    ZSET("zset:","zset数据结构"),
-    SET("set:","set数据结构")
+    STR("str","字符串结构"),
+    LIST("list","list结构"),
+    HASH("hash","map结构"),
+    ZSET("zset","zset数据结构"),
+    SET("set","set数据结构")
     ;
 
     private String key ;
