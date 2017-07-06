@@ -198,6 +198,20 @@ public class DateUtil {
         return formatDate(dBefore);
     }
 
+    /**
+     * 获取昨天
+     * @return
+     */
+    public static Date yesterdayTime(){
+        Date  date = new Date();
+        Date dBefore = new Date();
+        Calendar calendar = Calendar.getInstance(); //得到日历
+        calendar.setTime(date);//把当前时间赋给日历
+        calendar.add(Calendar.DAY_OF_MONTH, -1);  //设置为前一天
+        dBefore = calendar.getTime();   //得到前一天的时间
+        return dBefore ;
+    }
+
 
 
     /**

@@ -1,22 +1,18 @@
 package com.cloudm.framework.common.util;
 
 
-import com.cloudm.framework.common.enums.BaseBizEnum;
 import com.cloudm.framework.common.enums.BaseErrorEnum;
 import com.cloudm.framework.common.ex.BusinessProcessFailException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.conn.HttpHostConnectException;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
-import java.net.ConnectException;
 
 /**
  * @description:
