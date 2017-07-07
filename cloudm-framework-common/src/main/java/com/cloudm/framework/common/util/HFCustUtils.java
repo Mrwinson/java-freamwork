@@ -10,23 +10,50 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 /**
+ * http请求发送方法
  * Created by jackson on 2017/6/26.
  */
 @Slf4j
 public class HFCustUtils {
 
+    /**
+     * 发送http请求 有参
+     * @param host 服务器域名
+     * @param urlValue 接口请求路径
+     * @param bean 参数
+     * @return
+     */
     public static String sendObject(String host, String urlValue, Object bean) {
         return sendObject(host+urlValue, bean);
     }
 
+    /**
+     * 发送http请求 无参
+     * @param host 服务器域名
+     * @param urlValue 接口请求路径
+     * @return
+     */
     public static String sendNoParam(String host, String urlValue) {
         return sendNoParam(host+urlValue);
     }
 
+    /**
+     *  发送http请求
+     * @param host 服务器域名
+     * @param urlValue 接口请求路径
+     * @param mobile 手机
+     * @return
+     */
     public static String send(String host, String urlValue, String mobile) {
         return send(host+urlValue, mobile);
     }
 
+    /**
+     * 发送http请求
+     * @param urlvalue 请求路径
+     * @param bean 参数
+     * @return
+     */
     public static String sendObject(String urlvalue,Object bean) {
         String recString = "";
         try {
@@ -82,6 +109,12 @@ public class HFCustUtils {
         return recString;
     }
 
+    /**
+     * 发送http请求
+     * @param urlvalue 请求路径
+     * @param mobile 手机号
+     * @return
+     */
     public static String send(String urlvalue,String mobile) {
         String recString = "";
         try {
@@ -117,6 +150,11 @@ public class HFCustUtils {
         return recString;
     }
 
+    /**
+     * 发送http请求，无参
+     * @param urlvalue 请求路径
+     * @return
+     */
     public static String sendNoParam(String urlvalue) {
         String recString = "";
         try {
