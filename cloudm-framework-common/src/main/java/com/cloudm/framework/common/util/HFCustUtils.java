@@ -15,6 +15,18 @@ import java.net.URL;
 @Slf4j
 public class HFCustUtils {
 
+    public static String sendObject(String host, String urlValue, Object bean) {
+        return sendObject(host+urlValue, bean);
+    }
+
+    public static String sendNoParam(String host, String urlValue) {
+        return sendNoParam(host+urlValue);
+    }
+
+    public static String send(String host, String urlValue, String mobile) {
+        return send(host+urlValue, mobile);
+    }
+
     public static String sendObject(String urlvalue,Object bean) {
         String recString = "";
         try {
