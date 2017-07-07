@@ -27,7 +27,7 @@ public enum  BaseBizEnum {
     DELETE_SUCCESS(BaseBizEnum.OK.getCode(),"删除成功");
 
 
-    private Integer code;
+    private int code;
     private String message;
 
     private BaseBizEnum(Integer code, String message) {
@@ -35,7 +35,7 @@ public enum  BaseBizEnum {
         this.message = message;
     }
 
-    public Integer getCode() {
+    public int getCode() {
         return code;
     }
 

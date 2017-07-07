@@ -12,7 +12,7 @@ public interface KeyedNamed {
     /**
      * 状态值
      */
-    Integer getKey();
+    int getKey();
 
     /**
      * 状态描述
