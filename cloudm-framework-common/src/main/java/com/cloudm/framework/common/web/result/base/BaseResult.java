@@ -20,7 +20,7 @@ public class BaseResult implements Serializable {
     /**
      * 返回码
      */
-    protected Integer code;
+    protected int code;
 
     /**
      * 返回信息
@@ -51,7 +51,7 @@ public class BaseResult implements Serializable {
      * 返回码
      * @return 返回码
      */
-    public Integer getCode() {
+    public int getCode() {
         return code;
     }
 
@@ -59,7 +59,7 @@ public class BaseResult implements Serializable {
      * 设置返回码
      * @param code
      */
-    public void setCode(Integer code) {
+    public void setCode(int code) {
         this.code = code;
     }
 

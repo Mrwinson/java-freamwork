@@ -30,7 +30,7 @@ public enum BaseErrorEnum implements ServiceError {
     private final int code;
     private final String message ;
 
-    BaseErrorEnum(Integer code ,String message){
+    BaseErrorEnum(int code ,String message){
         this.code = code;
         this.message = message ;
     }

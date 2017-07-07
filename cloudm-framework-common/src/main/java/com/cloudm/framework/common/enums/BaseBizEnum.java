@@ -30,7 +30,7 @@ public enum  BaseBizEnum {
     private int code;
     private String message;
 
-    private BaseBizEnum(Integer code, String message) {
+    private BaseBizEnum(int code, String message) {
         this.code = code;
         this.message = message;
     }

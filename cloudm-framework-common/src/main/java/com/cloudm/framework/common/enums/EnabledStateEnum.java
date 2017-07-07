@@ -14,7 +14,7 @@ public enum EnabledStateEnum implements KeyedNamed {
     private int key;
     private String name;
 
-    private EnabledStateEnum(Integer key, String name) {
+    private EnabledStateEnum(int key, String name) {
         this.key = key;
         this.name = name;
     }

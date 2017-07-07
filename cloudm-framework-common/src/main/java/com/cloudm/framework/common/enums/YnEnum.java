@@ -13,7 +13,7 @@ public enum YnEnum implements KeyedNamed {
     N(BaseBizEnum.ZERRO.getCode(),"未删除");
     private int key ;
     private String name ;
-    private YnEnum(Integer key,String name){
+    private YnEnum(int key,String name){
         this.key =  key ;
         this.name = name ;
     }
