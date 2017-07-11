@@ -37,33 +37,49 @@ public class JPushHelper {
     public static long defaultPushByAlias(long alias, String msg, String title, int time,Map<String, String> map) throws Exception{
         long l = 0;
         JPushClient jpushClient = new JPushClient(masterSecret, appKey, 3);
-        //android 推送
-        PushPayload pushPayload = getPushPayload(Platform.android(),Notification.android(msg, title, map),alias, time);
-        PushResult result = jpushClient.sendPush(pushPayload);
-            if(null!=result && result.isResultOK()==true){//推送成功，返回true，l+1
-                if(log.isInfoEnabled()){
-                    log.info("result android={}" , result.isResultOK());
+        PushPayload pushPayload =null ;
+        try {
+            //android 推送
+             pushPayload = getPushPayload(Platform.android(), Notification.android(msg, title, map), alias, time);
+            PushResult result = jpushClient.sendPush(pushPayload);
+            if (null != result && result.isResultOK() == true) {//推送成功，返回true，l+1
+                if (log.isInfoEnabled()) {
+                    log.info("result android={}", result.isResultOK());
                 }
                 l += 1;
             }
+        }catch (Exception e){
+            log.error("as JPushHepler push msg is failed !params is ==>{},exception is ==>{}",pushPayload,e);
+        }
+
+
+
+
+        PushPayload pushPayloadIOS =null ;
+        try {
+
 
             //ios 推送
-        Notification iosNotification = Notification.newBuilder().addPlatformNotification(
-                IosNotification.newBuilder()
-                        .setSound("default")
-                        .setAlert(msg)
-                        .addExtras(map).build())
-                .build();
+            Notification iosNotification = Notification.newBuilder().addPlatformNotification(
+                    IosNotification.newBuilder()
+                            .setSound("default")
+                            .setAlert(msg)
+                            .addExtras(map).build())
+                    .build();
 
-        PushPayload pushPayloadIOS = getPushPayload(Platform.ios(),iosNotification,alias, time);
-        PushResult resultIOS = jpushClient.sendPush(pushPayloadIOS);
-            if(null!=resultIOS && resultIOS.isResultOK()==true){//推送成功，返回true，l+2
-                if(log.isInfoEnabled()){
-                    log.info("result ios={}" , resultIOS.isResultOK());
+             pushPayloadIOS = getPushPayload(Platform.ios(), iosNotification, alias, time);
+            PushResult resultIOS = jpushClient.sendPush(pushPayloadIOS);
+            if (null != resultIOS && resultIOS.isResultOK() == true) {//推送成功，返回true，l+2
+                if (log.isInfoEnabled()) {
+                    log.info("result ios={}", resultIOS.isResultOK());
                 }
                 l += 2;
             }
+        }catch (Exception e){
+            log.error("ios JPushHepler push msg is failed !params is ==>{},exception is ==>{}",pushPayloadIOS,e);
+        }
         return l;
+
     }
 
 
