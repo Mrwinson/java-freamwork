@@ -1,14 +1,12 @@
 package com.cloudm.framework.common.aop;
 
 
-import com.cloudm.framework.common.enums.BaseBizEnum;
 import com.cloudm.framework.common.enums.BaseErrorEnum;
 import com.cloudm.framework.common.ex.BusinessCheckFailException;
 import com.cloudm.framework.common.ex.BusinessProcessFailException;
 import com.cloudm.framework.common.util.StringUtil;
 import com.cloudm.framework.common.web.result.base.BaseResult;
 import com.cloudm.framework.common.web.result.base.ServiceError;
-import com.google.common.collect.Lists;
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.aopalliance.intercept.MethodInterceptor;
