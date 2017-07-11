@@ -1,7 +1,11 @@
 package com.cloudm.framework.common.sms;
 
+import com.cloudm.framework.common.helper.JPushHelper;
 import com.cloudm.framework.common.util.SmsUtil;
 import com.google.gson.Gson;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @description: Sms 单元测试
@@ -10,10 +14,16 @@ import com.google.gson.Gson;
  * @version: V1.0
  */
 public class SmsUtilTest {
- public static void main(String[] args){
-     Demo demo  =  new Demo();
-     demo.setProductName("wesd");
-     System.out.print(SmsUtil.send(new Gson().toJson(demo),"18910274841"));
+ public static void main(String[] args) throws Exception{
+//     Demo demo  =  new Demo();
+//     demo.setProductName("wesd");
+//     System.out.print(SmsUtil.send(new Gson().toJson(demo),"18910274841"));
+     String msg ="msg";
+     String title = null ;
+     Map<String, String> map = new HashMap<String, String>();
+     map.put("type", "9");
+     map.put("url","1111");
+     JPushHelper.defaultPushByAlias(106L,msg,null,1,map);
  }
 
 }
