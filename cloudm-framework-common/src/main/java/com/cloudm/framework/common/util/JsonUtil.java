@@ -1,8 +1,15 @@
 package com.cloudm.framework.common.util;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import lombok.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * @description: Json 工具类
@@ -22,6 +29,28 @@ public class JsonUtil {
         return  new Gson().toJson(obj) ;
     }
 
+    /**
+//     * 将json字符串转为List
+//     * @param json
+//     * @param tClass
+//     * @param <T>
+//     * @return
+//     */
+//    public static <T> T fromJsonToList(String json, Class<T> tClass) {
+//          new Gson().fromJson(json, tClass);
+//
+//    }
+    /**
+     * 将json字符串转为List
+     * @param json
+     * @param type
+     * @param <T>
+     * @return
+     */
+    public static <T> T fromJsonToList(String json, Type type) {
+        return  new Gson().fromJson(json, type);
+
+    }
     /**
      * JSON 转POJO
      * @param json
@@ -96,4 +125,28 @@ public class JsonUtil {
             sb.append('\t');
         }
     }
+
+    public static void main(String[] args) {
+        List<DemoList> list = new ArrayList<>( );
+        for(int i=0 ;i<5;i++){
+            DemoList demo = new DemoList();
+            demo.setId(i);
+            demo.setName("name_"+i);
+            demo.setNow(new Date());
+            list.add(demo);
+        }
+        String json  = JsonUtil.toJson(list);
+        Type type = new TypeToken<ArrayList<DemoList>>() {}.getType();
+        List<DemoList> list2 = new ArrayList<>( );
+        list2 =JsonUtil.fromJsonToList(json,type);
+        System.out.println(JsonUtil.toJson(list2));
+    }
+
+
+}
+@Data
+class DemoList{
+    private String name ;
+    private Integer id ;
+    private java.util.Date now ;
 }
