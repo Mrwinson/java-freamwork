@@ -59,7 +59,7 @@ public class BaseResult implements Serializable {
      * 设置返回码
      * @param code
      */
-    public void setCode(Integer code) {
+    public void setCode(int code) {
         this.code = code;
     }
 

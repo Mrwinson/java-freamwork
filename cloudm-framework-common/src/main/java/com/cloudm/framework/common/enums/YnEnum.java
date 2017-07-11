@@ -11,15 +11,15 @@ import com.cloudm.framework.common.core.KeyedNamed;
 public enum YnEnum implements KeyedNamed {
     Y(BaseBizEnum.FRIST.getCode(),"已删除"),
     N(BaseBizEnum.ZERRO.getCode(),"未删除");
-    private Integer key ;
+    private int key ;
     private String name ;
-    private YnEnum(Integer key,String name){
+    private YnEnum(int key,String name){
         this.key =  key ;
         this.name = name ;
     }
 
     @Override
-    public Integer getKey() {
+    public int getKey() {
         return key;
     }
 

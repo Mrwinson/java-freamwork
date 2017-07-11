@@ -11,16 +11,16 @@ import com.cloudm.framework.common.core.KeyedNamed;
 public enum EnabledStateEnum implements KeyedNamed {
     ENABLED(BaseBizEnum.FRIST.getCode(), "启用"),
     NOT_ENABLED(BaseBizEnum.ZERRO.getCode(), "禁用");
-    private Integer key;
+    private int key;
     private String name;
 
-    private EnabledStateEnum(Integer key, String name) {
+    private EnabledStateEnum(int key, String name) {
         this.key = key;
         this.name = name;
     }
 
     @Override
-    public Integer getKey() {
+    public int getKey() {
         return key;
     }
 

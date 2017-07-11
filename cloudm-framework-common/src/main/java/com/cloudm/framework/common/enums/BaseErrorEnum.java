@@ -27,10 +27,10 @@ public enum BaseErrorEnum implements ServiceError {
     RPC_ERROR(-9,"远程调用异常"),
     UNKNOWN_ERROR(-1,"未知异常");
 
-    private final Integer code;
+    private final int code;
     private final String message ;
 
-    BaseErrorEnum(Integer code ,String message){
+    BaseErrorEnum(int code ,String message){
         this.code = code;
         this.message = message ;
     }
@@ -41,7 +41,7 @@ public enum BaseErrorEnum implements ServiceError {
      * @return 返回错误码
      */
     @Override
-    public Integer getCode() {
+    public int getCode() {
         return code;
     }
 
