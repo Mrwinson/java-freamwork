@@ -1,7 +1,7 @@
 package com.cloudm.framework.common.sms;
 
 /**
- * @description:
+ * @description: 发送短息返回的数据结构
  * @author: Courser
  * @date: 2017/3/17
  * @version: V1.0

@@ -12,7 +12,7 @@ import com.taobao.api.response.AlibabaAliqinFcSmsNumSendResponse;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * @description:
+ * @description:发短信工具类
  * @author: Courser
  * @date: 2017/3/17
  * @version: V1.0
@@ -110,6 +110,9 @@ public class SmsUtil {
     }
 
 
+    /**
+     * 内部类获取body，即返回的数据对象
+     */
     private class Body {
         private Result result;
         private String request_id;

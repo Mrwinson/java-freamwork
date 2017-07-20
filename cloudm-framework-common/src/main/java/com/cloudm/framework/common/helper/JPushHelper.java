@@ -37,7 +37,7 @@ public class JPushHelper {
     public static long defaultPushByAlias(long alias, String msg, String title, int time,Map<String, String> map) throws Exception{
         long l = 0;
         JPushClient jpushClient = new JPushClient(masterSecret, appKey, 3);
-PushPayload pushPayload =null ;
+        PushPayload pushPayload =null ;
         try {        //android 推送
          pushPayload = getPushPayload(Platform.android(),Notification.android(msg, title, map),alias, time);
         PushResult result = jpushClient.sendPush(pushPayload);
@@ -53,7 +53,7 @@ PushPayload pushPayload =null ;
 
 
 
-
+        jpushClient = new JPushClient(masterSecret, appKey, 3);
         PushPayload pushPayloadIOS =null ;
         try {
 
