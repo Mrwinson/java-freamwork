@@ -15,15 +15,15 @@ import java.util.Map;
  */
 public class SmsUtilTest {
  public static void main(String[] args) throws Exception{
-//     Demo demo  =  new Demo();
-//     demo.setProductName("wesd");
-//     System.out.print(SmsUtil.send(new Gson().toJson(demo),"18910274841"));
-     String msg ="msg";
-     String title = null ;
-     Map<String, String> map = new HashMap<String, String>();
-     map.put("type", "9");
-     map.put("url","1111");
-     JPushHelper.defaultPushByAlias(106L,msg,null,1,map);
+     Demo demo  =  new Demo();
+     demo.setProductName("黄栋测试");
+     System.out.print(SmsUtil.send(new Gson().toJson(demo),"18273128032"));
+//     String msg ="msg";
+//     String title = null ;
+//     Map<String, String> map = new HashMap<String, String>();
+//     map.put("type", "9");
+//     map.put("url","1111");
+//     JPushHelper.defaultPushByAlias(106L,msg,null,1,map);
  }
 
 }

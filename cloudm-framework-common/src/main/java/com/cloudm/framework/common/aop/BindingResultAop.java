@@ -45,7 +45,7 @@ public class BindingResultAop {
 //                MethodSignature signature = (MethodSignature) joinPoint.getSignature();
 //                Method method = signature.getMethod();
                 log.error(joinPoint.getTarget().getClass().getName()+"#"+joinPoint.getSignature().getName() +" is error ==>{}",msg.toString());
-               return Result.wrapErrorResult(BaseErrorEnum.VALIDATE_ERROR.getCode(),msg.toString());
+               return Result.wrapErrorResult(BaseErrorEnum.VALIDATE_ERROR.getCode(),msg.toString().substring(0,msg.toString().length()-1));
             }
         }
         return joinPoint.proceed();
