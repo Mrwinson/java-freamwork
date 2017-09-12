@@ -6,8 +6,10 @@ import java.util.List;
 
 /**
  * ResultDO 相关的对象创建
+ * @see Result 用这里类替代，从2.0将直接移除
  * Created by jackson on 2017/6/26.
  */
+@Deprecated
 public class ResultHelper {
     private static String ErrorMsg = "系统异常";
 
