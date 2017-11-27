@@ -65,7 +65,7 @@ public class SmsUtil {
                     sendResult=true;
                 }
             }else{
-                log.error("send sms is failed !,the mobile number is[{}],errors:{}",mobile);
+                log.error("send sms is failed !,the mobile number is[{}],errors:{}",mobile,rsp.getBody());
                 return  false ;
             }
 
