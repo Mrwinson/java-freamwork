@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @date: 2017/3/15
  * @version: V1.0
  */
-public class BaseResult implements Serializable {
+public class BaseResult<T> implements Serializable {
     private static final long serialVersionUID = -4205541359679710511L;
     protected static final Integer SUCCESS_CODE= BaseBizEnum.OK.getCode();
     /**
@@ -26,11 +26,11 @@ public class BaseResult implements Serializable {
      * 返回信息
      */
     protected String message;
-    /**
-     * 后台开发人员提示信息，方便问题的跟踪
-     */
-    protected String devMsg ;
 
+    /**
+     * 成功返回的数据
+     */
+    protected T result;
     /**
      * 是否成功
      * @return true成功，false失败
@@ -80,20 +80,18 @@ public class BaseResult implements Serializable {
     }
 
     /**
-     *  返回开发人员的提示信息
-     * @return 信息
+     * 获得结果对象
+     * @return
      */
-    public String getDevMsg() {
-        return devMsg;
+    public T getResult() {
+        return result;
     }
 
     /**
-     * 设置开发人员提示信息
-     * @param devMsg
+     * 设置结果对象
+     * @param result
      */
-    public void setDevMsg(String devMsg) {
-        this.devMsg = devMsg;
+    public void setResult(T result) {
+        this.result = result;
     }
-
-
 }

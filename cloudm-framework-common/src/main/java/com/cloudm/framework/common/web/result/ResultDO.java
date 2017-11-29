@@ -9,7 +9,7 @@ import java.io.Serializable;
  * Created by jackson on 2017/6/26.
  */
 public class ResultDO<T> extends BaseResult implements Serializable{
-    private T result;
+   // private T result;
 
     public boolean isOk() {
         return success;
@@ -29,10 +29,10 @@ public class ResultDO<T> extends BaseResult implements Serializable{
     public void setMessage(String message) {
         this.message = message;
     }
-    public T getResult() {
-        return result;
-    }
-    public void setResult(T result) {
-        this.result = result;
-    }
+//   public T getResult() {
+//        return result;
+//    }
+//    public void setResult(T result) {
+//        this.result = result;
+//    }
 }
