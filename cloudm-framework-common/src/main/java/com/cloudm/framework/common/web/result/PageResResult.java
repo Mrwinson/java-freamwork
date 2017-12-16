@@ -59,7 +59,7 @@ public class PageResResult<T> extends ResResult<T>{
         result.setResult(data);
         result.setSuccess(true);
         result.setCode(SUCCESS_CODE);
-        result.page = springPage ;
+        result.page = springPage;
         return  result ;
     }
     /**
