@@ -2,7 +2,7 @@ package com.cloudm.framework.common.aop;
 
 import com.cloudm.framework.common.enums.BaseErrorEnum;
 import com.cloudm.framework.common.util.StringUtil;
-import com.cloudm.framework.common.web.result.PageResResult;
+import com.cloudm.framework.common.web.result.ResResult;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.springframework.validation.BindingResult;
@@ -42,7 +42,7 @@ public class BindingReqResultAop {
                     msg.append(BaseErrorEnum.VALIDATE_ERROR.getMessage()+";");
                 }
                 log.error(joinPoint.getTarget().getClass().getName()+"#"+joinPoint.getSignature().getName() +" is error ==>{}",msg.toString());
-                return PageResResult.wrapErrorResult(BaseErrorEnum.VALIDATE_ERROR.getCode(),msg.toString());
+                return ResResult.wrapErrorResult(BaseErrorEnum.VALIDATE_ERROR.getCode(),msg.toString());
             }
         }
         return joinPoint.proceed();

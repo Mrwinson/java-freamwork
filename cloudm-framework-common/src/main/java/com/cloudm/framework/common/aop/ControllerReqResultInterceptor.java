@@ -4,6 +4,7 @@ import com.cloudm.framework.common.enums.BaseErrorEnum;
 import com.cloudm.framework.common.ex.BusinessCheckFailException;
 import com.cloudm.framework.common.ex.BusinessProcessFailException;
 import com.cloudm.framework.common.util.StringUtil;
+import com.cloudm.framework.common.web.result.BaseResResult;
 import com.cloudm.framework.common.web.result.ResResult;
 import com.cloudm.framework.common.web.result.base.ServiceError;
 import com.google.gson.Gson;
@@ -96,7 +97,7 @@ public class ControllerReqResultInterceptor implements MethodInterceptor {
      * @param e
      * @return
      */
-    private ResResult exceptionProcessor(MethodInvocation invocation, Throwable e,Integer errorCode,String message,ServiceError serviceError) {
+    private ResResult exceptionProcessor(MethodInvocation invocation, Throwable e, Integer errorCode, String message, ServiceError serviceError) {
         Object[] args = invocation.getArguments();
         List<Object> list =  new ArrayList();
 
@@ -120,7 +121,7 @@ public class ControllerReqResultInterceptor implements MethodInterceptor {
         result.setSuccess(false);
         return result;
     }
-    private ResResult exceptionProcessor(MethodInvocation invocation, Throwable e,ServiceError serviceError){
+    private ResResult exceptionProcessor(MethodInvocation invocation, Throwable e, ServiceError serviceError){
         return exceptionProcessor(invocation,e,null,null,serviceError);
     }
 
