@@ -57,9 +57,12 @@ public class SmsUtil {
             AlibabaAliqinFcSmsNumSendResponse rsp = client.execute(req);
 //            System.out.println(rsp.getBody());
 
-            //解析返回结果
+            //解析返回结果git
             Gson gson = new Gson();
             CustResultDO<Body> bo = gson.fromJson(rsp.getBody(), new TypeToken<CustResultDO<Body>>(){}.getType());
+            if (bo ==null){
+                return  false ;
+            }
             if (bo.getAlibaba_aliqin_fc_sms_num_send_response()!=null) {
                 if (bo.getAlibaba_aliqin_fc_sms_num_send_response().getResult().getSuccess().equals("true")) {
                     sendResult=true;
