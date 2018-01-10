@@ -112,10 +112,11 @@ public class ControllerResultInterceptor implements MethodInterceptor {
 
         Method method = invocation.getMethod();
         String methodName = method.getDeclaringClass().getName() + "." + method.getName();
-        if (!list.isEmpty())
+        if (!list.isEmpty()) {
             log.error("服务[method=" + methodName + "] params={}" + new Gson().toJson(list) + "异常：", e);
-        else
+        }else {
             log.error("服务[method=" + methodName + "] params={}" + new Gson().toJson(null) + "异常：", e);
+        }
         BaseResult result = getBaseResult(invocation);
         result.setCode(errorCode!=null?errorCode:serviceError.getCode());
         result.setMessage(StringUtil.isNotEmpty(message)?message:serviceError.getMessage());

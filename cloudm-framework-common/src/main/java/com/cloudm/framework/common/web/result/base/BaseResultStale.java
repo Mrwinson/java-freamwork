@@ -1,15 +1,17 @@
 package com.cloudm.framework.common.web.result.base;
+
 import com.cloudm.framework.common.enums.BaseBizEnum;
 
 import java.io.Serializable;
 
 /**
- * @description: 基础 result
- * @author: Courser
- * @date: 2017/3/15
+ * @description: 类描述
+ * @author: wangbo
+ * @date: 2017/12/14
  * @version: V1.0
  */
-public class BaseResult<T> implements Serializable {
+public class BaseResultStale implements Serializable{
+
     private static final long serialVersionUID = -4205541359679710511L;
     protected static final Integer SUCCESS_CODE= BaseBizEnum.OK.getCode();
     /**
@@ -26,11 +28,11 @@ public class BaseResult<T> implements Serializable {
      * 返回信息
      */
     protected String message;
-
     /**
-     * 成功返回的数据
+     * 后台开发人员提示信息，方便问题的跟踪
      */
-    protected T result;
+    protected String devMsg ;
+
     /**
      * 是否成功
      * @return true成功，false失败
@@ -80,18 +82,19 @@ public class BaseResult<T> implements Serializable {
     }
 
     /**
-     * 获得结果对象
-     * @return
+     *  返回开发人员的提示信息
+     * @return 信息
      */
-    public T getResult() {
-        return result;
+    public String getDevMsg() {
+        return devMsg;
     }
 
     /**
-     * 设置结果对象
-     * @param result
+     * 设置开发人员提示信息
+     * @param devMsg
      */
-    public void setResult(T result) {
-        this.result = result;
+    public void setDevMsg(String devMsg) {
+        this.devMsg = devMsg;
     }
+
 }

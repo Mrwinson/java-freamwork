@@ -1,9 +1,7 @@
 package com.cloudm.framework.common.web.result;
-import com.cloudm.framework.common.util.PageUtil;
 import com.cloudm.framework.common.web.result.base.BaseResult;
 import com.cloudm.framework.common.web.result.base.ServiceError;
-import com.google.common.collect.Lists;
-import org.springframework.data.domain.Page;
+import com.cloudm.framework.common.web.result.page.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.io.Serializable;
@@ -14,21 +12,22 @@ import java.io.Serializable;
  * @date: 2017/3/15
  * @version: V1.0
  */
-public class Result<T> extends BaseResult implements Serializable{
+public class Result<T> extends BaseResult<T> implements Serializable{
     private static final long serialVersionUID = -7647570604845078925L;
-
-
     /**
-     * 成功返回的数据
+     * 分页信息
      */
-    private T result;
     private Page page ;
+    /**
+     * 给开发人员的提示
+     */
+    private String devMsg;
 
-    public static <D> Result<D> wrapSuccessfulResult(D data) {
-        Result<D> result = new Result<D>();
-        result.result = data;
-        result.success = true;
-        result.code=SUCCESS_CODE ;
+    public static <D> BaseResult<D> wrapSuccessfulResult(D data) {
+        BaseResult<D> result = new BaseResult<>();
+        result.setResult(data);
+        result.setSuccess(true);
+        result.setCode(SUCCESS_CODE);
         return result;
     }
 
@@ -39,11 +38,11 @@ public class Result<T> extends BaseResult implements Serializable{
      * @param <D>
      * @return
      */
-    public static <D> Result<D> wrapSuccessfulResult(D data,String message) {
-        Result<D> result = new Result<D>();
-        result.result = data;
-        result.success = true;
-        result.code=SUCCESS_CODE ;
+    public static <D> BaseResult<D> wrapSuccessfulResult(D data,String message) {
+        BaseResult<D> result = new BaseResult<>();
+        result.setResult(data);
+        result.setSuccess(true);
+        result.setCode(SUCCESS_CODE);
         result.setMessage(message);
         return result;
     }
@@ -56,8 +55,11 @@ public class Result<T> extends BaseResult implements Serializable{
      * @return list集合
      */
     public static  <D> Result<D> wrapSuccessfulResult(D data, Pageable pageable, int total){
-        Page springPage = PageUtil.newPage(Lists.newArrayList(),pageable,total);
-        Result<D> result =wrapSuccessfulResult(data);
+        Page springPage = new Page(pageable,total);
+        Result<D> result = new Result<>();
+        result.setResult(data);
+        result.setSuccess(true);
+        result.setCode(SUCCESS_CODE);
         result.page = springPage ;
         return  result ;
     }
@@ -70,8 +72,12 @@ public class Result<T> extends BaseResult implements Serializable{
      * @return list集合
      */
     public static  <D> Result<D> wrapSuccessfulResult(D data, Pageable pageable, int total,String message){
-        Page springPage = PageUtil.newPage(Lists.newArrayList(),pageable,total);
-        Result<D> result =wrapSuccessfulResult(data,message);
+        Page springPage = new Page(pageable,total);
+        Result<D> result = new Result<>();
+        result.setResult(data);
+        result.setSuccess(true);
+        result.setCode(SUCCESS_CODE);
+        result.setMessage(message);
         result.page = springPage ;
         return  result ;
     }
@@ -81,11 +87,11 @@ public class Result<T> extends BaseResult implements Serializable{
      * @param <D>
      * @return
      */
-    public static <D> Result<D> wrapErrorResult(ServiceError error) {
-        Result<D> result = new Result<D>();
-        result.success = false;
-        result.code = error.getCode();
-        result.message = error.getMessage();
+    public static <D> BaseResult<D> wrapErrorResult(ServiceError error) {
+        BaseResult<D> result = new BaseResult<>();
+        result.setSuccess(false);
+        result.setCode(error.getCode());
+        result.setMessage(error.getMessage());
         return result;
     }
 
@@ -99,11 +105,11 @@ public class Result<T> extends BaseResult implements Serializable{
      * @param <D> 泛型
      * @return
      */
-    public static <D> Result<D> wrapErrorResult(Integer code, String message) {
-        Result<D> result = new Result<D>();
-        result.success = false;
-        result.code = code;
-        result.message = message;
+    public static <D> BaseResult<D> wrapErrorResult(Integer code, String message) {
+        BaseResult<D> result = new BaseResult<>();
+        result.setSuccess(false);
+        result.setCode(code);
+        result.setMessage(message);
         return result;
     }
     /**
@@ -113,18 +119,31 @@ public class Result<T> extends BaseResult implements Serializable{
      * @param <D> 泛型
      * @return
      */
-    public static <D> Result<D> wrapErrorResult(D data,Integer code, String message) {
-        Result<D> result = new Result<D>();
-        result.result = data ;
-        result.success = false;
-        result.code = code;
-        result.message = message;
-        return result;
-    }
-    public T getResult() {
+    public static <D> BaseResult<D> wrapErrorResult(D data,Integer code, String message) {
+        BaseResult<D> result = new BaseResult<>();
+        result.setSuccess(false);
+        result.setCode(code);
+        result.setMessage(message);
+        result.setResult(data);
         return result;
     }
     public Page getPage(){
         return  page;
+    }
+
+    /**
+     *  返回开发人员的提示信息
+     * @return 信息
+     */
+    public String getDevMsg() {
+        return devMsg;
+    }
+
+    /**
+     * 设置开发人员提示信息
+     * @param devMsg
+     */
+    public void setDevMsg(String devMsg) {
+        this.devMsg = devMsg;
     }
 }

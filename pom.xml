@@ -7,7 +7,7 @@
     <groupId>com.cloudm.framework</groupId>
     <artifactId>cloudm-framework</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <modules>
         <module>cloudm-framework-common</module>
         <module>cloudm-framework-pom</module>
