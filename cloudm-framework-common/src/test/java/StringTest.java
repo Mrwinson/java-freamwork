@@ -1,6 +1,8 @@
 import com.cloudm.framework.common.util.HttpUtil;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -10,15 +12,46 @@ import java.util.Map;
  * @version: V1.0
  */
 public class StringTest {
-    public static void main(String[] args){
-        int i  =  1 ;
-        int j = 4;
-        System.out.println(String.format("%0"+j+"d",i));
-        HttpUtil httpUtil =  new HttpUtil();
-        Map<String,Object> map = new HashMap<>();
-        map.put("deviceId",100005);
-        map.put("type",1);
+//    public static void main(String[] args){
+//
+////        int a = (int)128.624;
+//        Integer b = 13, c=232;
+////        System.out.print(b==c);
+////        int i  =  1 ;
+////        int j = 4;
+////        System.out.println(String.format("%0"+j+"d",i));
+//
+//        int fac = 13;
+//        int faa = new forTest().forTest();
+//
+//        Integer bug = new Integer(13);
+//        System.out.print((b == bug) + "------" + (b.equals(bug)));
+//
+//    }
+//
+//
+//    private static class forTest {
+//
+//        public int forTest(){
+//            return 13;
+//        }
+//
+//    }
 
-        httpUtil.post("http://localhost:8092/mars/json/admin/fenceInfo/getFence",map);
-    }
+
+    public static void main(String[] args) { // Line 1
+        int i=1; // Line 2
+        Object obj = new Object(); // Line 3
+        StringTest mem = new StringTest(); // Line 4
+        mem.foo(obj); // Line 5
+
+        List a = new ArrayList();
+
+    } // Line 9
+
+    private void foo(Object param) { // Line 6
+        String str = param.toString(); //// Line 7
+        System.out.println(str);
+    } // Line 8
+
 }
